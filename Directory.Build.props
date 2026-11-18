@@ -1,0 +1,42 @@
+<Project>
+  <PropertyGroup>
+    <RepoRoot>$(MSBuildThisFileDirectory)</RepoRoot>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Authors>Daniel Anderegg</Authors>
+    <Copyright>Copyright (c) Daniel Anderegg 2026</Copyright>
+    <PackageVersion>0.1.0</PackageVersion>
+    <RepositoryUrl>https://github.com/mushedResearch/XParsec.ActiveParsers</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://mushedresearch.github.io/XParsec.ActiveParsers/</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <!-- https://fsprojects.github.io/FSharp.Formatting/styling.html -->
+    <FsDocsLicenseLink>https://github.com/mushedResearch/XParsec.ActiveParsers/blob/main/LICENSE</FsDocsLicenseLink>
+    <FsDocsReleaseNotesLink>https://github.com/mushedResearch/XParsec.ActiveParsers/blob/main/CHANGELOG.md</FsDocsReleaseNotesLink>
+  </PropertyGroup>
+  <PropertyGroup Label="F# Specific Options" Condition="'$(MSBuildProjectExtension)' == '.fsproj'">
+    <DisableImplicitSystemValueTupleReference>true</DisableImplicitSystemValueTupleReference>
+    <DisableImplicitFSharpCoreReference>true</DisableImplicitFSharpCoreReference>
+  </PropertyGroup>
+  <!-- Use lock files -->
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <RestoreLockedMode Condition="'$(ContinuousIntegrationBuild)' == 'true'">true</RestoreLockedMode>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(RepoRoot)README.md" Pack="true" PackagePath="/" />
+    <None Include="$(RepoRoot)LICENSE" Pack="true" PackagePath="/" />
+  </ItemGroup>
+</Project>
